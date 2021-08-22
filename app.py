@@ -46,8 +46,8 @@ def getentity():
                 "Entidade":entity.label_
             })
             output = entidades
-
-    return json.dumps(output)
+            output = json.dumps(output)
+    return render_template('index.html',data=output)  
 
 
 if __name__ == '__main__':
