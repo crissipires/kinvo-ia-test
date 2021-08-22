@@ -26,25 +26,28 @@ def getnews():
 
 @app.route('/getentity')
 def getentity():
-    #carrego o modelo e indentifico qual é a linguagem
+ 
     nlp = spacy.load("pt_core_news_sm")
 
     with open('news.json','r') as file:
         news = json.loads(file.read())
-        output = {}
+        output = list()
 
-        for new in news:
-            #lançando em string 
-            new = str(new)
-            doc = nlp(new)
-            entidades = []
-            for entity in doc.ents:
-                entidades.append({
-                    "Trexo":entity.text,
-                    "Entidade":entity.label_
-                    })
-            output[new] = entidades
-    return output
+    for new in news:
+        #convertendo de dicionario pra string
+        new = str(new)
+        doc = nlp(new)
+        entidades = []
+
+        #encontrando entidades nomeadas, frases e conceitos
+        for entity in doc.ents:
+            entidades.append({
+                "Trexo":entity.text,
+                "Entidade":entity.label_
+            })
+            output = entidades
+
+    return json.dumps(output)
 
 
 if __name__ == '__main__':

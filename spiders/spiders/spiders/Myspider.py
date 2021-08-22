@@ -5,14 +5,12 @@ class Myspider(scrapy.Spider):
     start_urls = ['https://financenews.com.br/feed/']
 
     def parse(self,response):
-
         links = response.xpath('//channel/item')
 
         #extraindo os links do site 
-        for link in links:
-            
+        for link in links[:5]:
+    
             linkExtracted = link.xpath('link/text()').get()
-
             yield scrapy.Request(url=linkExtracted, callback=self.extract_news)
 
 
@@ -26,7 +24,7 @@ class Myspider(scrapy.Spider):
         #extraindo as noticias dos links e removendo partes desnecessarias
         for r in response.xpath('/html/body/div[2]/div[2]/div/div[1]/div[3]'):
             text = [t.strip() for t in r.xpath('.//text()').extract() if t.strip()]
-            texto.append(' '.join(text).split("Whatsapp")[0].strip("Telegram")[0].strip())
+            texto.append(' '.join(text))
 
 
         yield{
