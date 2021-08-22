@@ -4,7 +4,6 @@ import json
 import os
 import spacy
 
-
 app = Flask("Minerando")
 
 @app.route('/getnews')
@@ -39,7 +38,7 @@ def getentity():
         doc = nlp(new)
         entidades = []
 
-        #encontrando entidades nomeadas, frases e conceitos
+        #encontrando entidades nomeadas, frases e conceitos.
         for entity in doc.ents:
             entidades.append({
                 "Trexo":entity.text,
