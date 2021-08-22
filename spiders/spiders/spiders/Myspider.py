@@ -7,7 +7,7 @@ class Myspider(scrapy.Spider):
     def parse(self,response):
         links = response.xpath('//channel/item')
 
-        #extraindo os links do site 
+        #extraindo os links do site.
         for link in links[:5]:
     
             linkExtracted = link.xpath('link/text()').get()
