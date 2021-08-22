@@ -1,11 +1,11 @@
 import spacy 
-from spacy import displacy 
 import json
 
 #carrego o modelo e indentifico qual é a linguagem
 nlp = spacy.load("pt_core_news_sm")
 
-def getentity():
+#função pra obter a entidade
+def getEntity():
     with open('quotes.json','r') as file:
         news = json.loads(file.read())
         output = {}
