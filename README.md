@@ -41,6 +41,8 @@ Se você apenas clonar o repositório não vai conseguir fazer push e depois vai
 **Sucesso!**
 
 
+  ```
+
 * **Considerações finais da resolução do desafio**
 
 Para minha implementação foi utlizado apenas o site https://financenews.com.br.
