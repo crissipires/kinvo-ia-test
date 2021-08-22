@@ -39,3 +39,8 @@ Para iniciar o teste, faça um fork deste repositório, crie uma branch com o se
 Se você apenas clonar o repositório não vai conseguir fazer push e depois vai ser mais complicado fazer o pull request.
 
 **Sucesso!**
+
+
+* **Considerações finais da resolução do desafio**
+
+Para minha implementação foi utlizado apenas o site https://financenews.com.br.
