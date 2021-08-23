@@ -14,40 +14,38 @@ def getnews():
         
 
     if os.path.exists('news.json'):
-        data = []
         arq = pd.read_json('news.json',encoding='utf8')
+        data = arq[['title','news']].head(5).to_dict(orient='records')
 
-        for a in arq.values:
-            data.append(a)
-
-        return render_template('index.html',data=data)  
+        return render_template('index.html', data=data)
 
 
 @app.route('/getentity')
 def getentity():
- 
-    nlp = spacy.load("pt_core_news_sm")
+    try:
+        nlp = spacy.load("pt_core_news_sm")
 
-    with open('news.json','r') as file:
-        news = json.loads(file.read())
-        output = list()
+        with open('news.json','r') as file:
+            news = json.loads(file.read())
+            output = list()
 
-    for new in news:
-        #convertendo de dicionario pra string
-        new = str(new)
-        doc = nlp(new)
-        entidades = []
+        for new in news:
+            #convertendo de dicionario pra string
+            new = str(new)
+            doc = nlp(new)
+            entidades = []
 
-        #encontrando entidades nomeadas, frases e conceitos.
-        for entity in doc.ents:
-            entidades.append({
-                "Trexo":entity.text,
-                "Entidade":entity.label_
-            })
-            output = entidades
-            output = json.dumps(output)
-    return render_template('index.html',data=output)  
-
+            #encontrando entidades nomeadas, frases e conceitos.
+            for entity in doc.ents:
+                entidades.append({
+                    "trexo":entity.text,
+                    "entidade":entity.label_
+                })
+                output = entidades
+                
+        return render_template('scapy.html',data=output)  
+    except IOError:
+        return  '<h1>Erro ao obter entidade, execute o endpoint /getnews para obter as noticias antes.</h1>'
 
 if __name__ == '__main__':
     app.run(debug=True)

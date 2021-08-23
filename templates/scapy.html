@@ -10,19 +10,19 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Teste Kinvo</h1>
-      <p class="subtitle">Minerando ações da <strong>B3</strong>!</p>
+      <p class="subtitle">Extraindo entidades das <strong>Noticias</strong></p>
 
       <table border="1">
       <tr>
-      <th>Titulo</th>
-      <th>Noticia</th>
-       {% for d in data %}
+      <th>Trexo</th>
+      <th>Entidade</th>
       </tr>
+      {% for d in data %}
       <tr>
-      <td>{{d.title}}</td>
-      <td>{{d.news}}</td>
-      </tr>
-       {% endfor %}
+      <td>{{d.trexo}}</td>
+      <td>{{d.entidade}}</td>
+      {% endfor %}
+
       </table>
       
     </div>

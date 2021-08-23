@@ -8,7 +8,7 @@ class Myspider(scrapy.Spider):
         links = response.xpath('//channel/item')
 
         #extraindo os links do site.
-        for link in links[:5]:
+        for link in links[:6]:
     
             linkExtracted = link.xpath('link/text()').get()
             yield scrapy.Request(url=linkExtracted, callback=self.extract_news)
